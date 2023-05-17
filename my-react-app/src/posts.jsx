@@ -1,32 +1,3 @@
-// import React,{useState,useEffect} from 'react'
-// // import { BrowserRouter, Routes, Route } from "react-router-dom";
-// // import Layout from "./pages";
-// // import Home from "./home";
-
-// export default function App(){
-// //   const [resourceType,setResourceType]= useState('posts')
-//   const [items,setItems]=useState([])
-//   const currentUser=JSON.parse(localStorage.getItem("current user"));
-
-//   useEffect(()=> {
-//     fetch(`https://jsonplaceholder.typicode.com/posts`)
-//       .then(response => response.json())
-//       .then(json => setItems(json))
-//   },[])
-
-//   const filteredItems = items.filter(item => {
-//     return item.userId === currentUser.id;
-//   });
-
-//   return(
-//     <>
-//       <h1>Posts</h1>
-//       {filteredItems.map(item => {
-//         return <pre>{JSON.stringify(item.title)}</pre>
-//       })}
-//     </>
-//   )
-// }
 
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useParams ,useNavigate} from "react-router-dom";
@@ -78,21 +49,24 @@ export default function App() {
   };
   return (
     <>
-      <h1>Posts</h1>
+      <h2>Posts</h2>
         {filteredItems.map(item => {
           return (
             <>
-              <div key={item.id} className={selectedItem === item ? 'selected' : ''}>
-              
-                <div className="post-title" onClick={() => handleClick(item)}>
-                  <pre>{JSON.stringify(item.title)}</pre>
-                  <pre>{JSON.stringify(item.body)}</pre>
-
-                </div>
-              </div>
+              <div className='post'>
+                <div key={item.id} className={selectedItem === item ? 'selected' : ''}>
                 
-              <button onClick={() => handleClickComments(item)}>Comments</button>
-              {item===selectedItemComments?<Outlet/>:null}
+                  <div className="post-title" onClick={() => handleClick(item)}>
+                
+                    <strong>{item.title}</strong> <br/> <br/>
+                    <span>{item.body}</span>
+
+                  </div>
+                </div>
+                  
+                <button className='post-buttons' onClick={() => handleClickComments(item)}>Comments</button>
+                {item===selectedItemComments?<Outlet/>:null}
+              </div>
             </>
           );
         })}

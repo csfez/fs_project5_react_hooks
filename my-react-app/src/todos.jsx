@@ -21,7 +21,7 @@ export default function App(){
         <button onClick={()=>setResourceType('comments')}>comments</button>
       </div> */}
       
-      <h1>Todos</h1>
+      <h2>Todos</h2>
       {items.map(item=>{
         return <pre>{JSON.stringify(item)}</pre>
       })}

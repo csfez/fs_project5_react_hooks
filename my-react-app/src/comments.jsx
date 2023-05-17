@@ -1,5 +1,7 @@
 import { useParams ,useLocation} from "react-router-dom";
 import React, { useState, useEffect  } from 'react';
+import './App.css'
+
 
 const Comments = () => {
   const { id, postid } = useParams();
@@ -19,13 +21,13 @@ const Comments = () => {
   });
 
   return (
-    <div>
-      <h1>Comments for post {postid} by user {id}</h1>
+    <div className="comments">
+      {/* <h2>Comments for post {postid} by user {id}</h2> */}
       {selectedItem && <pre>{selectedItem.title}</pre>}
       {filteredItems.map(item => {
         return (
         <>
-          <strong>name:</strong> {item.name}
+          <strong>{item.email}: {item.name}</strong> 
           <pre>{item.body}</pre>
         </>)
       })}
